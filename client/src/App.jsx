@@ -7,6 +7,8 @@ import Manager from "./pages/Manager";
 import Admin from "./pages/Admin";
 import CategoryPage from "./pages/admin/CategoryPage";
 import ProductPage from "./pages/admin/ProductPage";
+import CashierPOS from "./pages/cashier/CashierPOS";
+
 
 
 function App() {
@@ -45,7 +47,7 @@ function App() {
 // Admin route ke andar:
 <Route path="/categories" element={<CategoryPage />} />
 
-
+<Route path="/cashiers" element={<CashierPOS />} />
 <Route path="/products" element={<ProductPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

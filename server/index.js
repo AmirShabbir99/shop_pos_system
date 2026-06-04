@@ -7,6 +7,7 @@ import authRoutes from "./routes/user.route.js";
 import dashboardRoutes from "./routes/dashboard.route.js";
 import categoryRoutes from "./routes/category.route.js";
 import productRoutes from "./routes/product.route.js";
+import saleRoutes from "./routes/sale.route.js";
 
 dotenv.config();
 connectDB();
@@ -31,7 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-
+app.use("/api/sales", saleRoutes);
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
