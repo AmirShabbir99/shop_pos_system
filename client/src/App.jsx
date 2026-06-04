@@ -11,6 +11,8 @@ import ManagerDashboard from "./pages/manager/ManagerDashboard";
 import CashierDashboard from "./pages/cashier/CashierDashboard";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import InvoiceSection from "./components/InvoiceSection";
+import ReportsPage from "./pages/admin/ReportsPage";
+
 
 const App = () => (
   <AuthBootstrap>
@@ -29,6 +31,11 @@ const App = () => (
         <Route path="/admin/categories" element={<CategoryPage />} />
         <Route path="/admin/pos" element={<CashierPOS />} />
         <Route path="/invoices" element={<InvoiceSection />} />
+        // Admin routes mein
+<Route path="/admin/reports"   element={<ReportsPage />} />
+
+// Manager routes mein
+<Route path="/manager/reports" element={<ReportsPage />} />
       </Route>
 
       <Route
