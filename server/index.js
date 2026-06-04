@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/user.route.js";
 import dashboardRoutes from "./routes/dashboard.route.js";
+import categoryRoutes from "./routes/category.route.js";
+import productRoutes from "./routes/product.route.js";
 
 dotenv.config();
 connectDB();
@@ -26,6 +28,8 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
 app.use((req, res) => {
@@ -33,9 +37,13 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  console.error("ERROR =>", err);
+
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+
   res.status(statusCode).json({
-    message: err.message || "Server error",
+    message: err.message,
+    stack: err.stack,
   });
 });
 
