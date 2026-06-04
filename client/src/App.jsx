@@ -31,11 +31,10 @@ const App = () => (
         <Route path="/admin/categories" element={<CategoryPage />} />
         <Route path="/admin/pos" element={<CashierPOS />} />
         <Route path="/invoices" element={<InvoiceSection />} />
-        // Admin routes mein
-<Route path="/admin/reports"   element={<ReportsPage />} />
 
-// Manager routes mein
-<Route path="/manager/reports" element={<ReportsPage />} />
+        <Route path="/admin/reports" element={<ReportsPage />} />
+
+        <Route path="/manager/reports" element={<ReportsPage />} />
       </Route>
 
       <Route
@@ -61,7 +60,7 @@ const App = () => (
         <Route path="/cashier" element={<CashierDashboard />} />
         <Route path="/cashier/pos" element={<CashierPOS />} />
       </Route>
-
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   </AuthBootstrap>
 );
