@@ -14,18 +14,19 @@ export const authApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      invalidatesTags: ["Me"],
     }),
+
     logout: builder.mutation({
       query: () => ({
         url: "/logout",
         method: "POST",
       }),
-      invalidatesTags: ["Me"],
     }),
+
     me: builder.query({
       query: () => "/me",
       providesTags: ["Me"],
+      keepUnusedDataFor: 300,
     }),
   }),
 });

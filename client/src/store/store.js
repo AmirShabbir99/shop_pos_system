@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
 import { authApi } from "../features/auth/authApi";
-import { dashboardApi } from "../features/dashboardApi";
+import { dashboardApi } from "../features/dashboard/dashboardApi";
 import { categoryApi } from "../features/category/categoryApi";
 import { productApi } from "../features/product/productApi";
 import { saleApi } from "../features/sale/saleApi";

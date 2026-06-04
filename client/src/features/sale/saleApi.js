@@ -6,17 +6,31 @@ export const saleApi = createApi({
     baseUrl: "/api/sales",
     credentials: "include",
   }),
-  tagTypes: ["Sale"],
+  tagTypes: ["Sales", "Sale"],
   endpoints: (builder) => ({
     createSale: builder.mutation({
-      query: (data) => ({ url: "/", method: "POST", body: data }),
-      invalidatesTags: ["Sale"],
+      query: (body) => ({
+        url: "/",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Sales"],
     }),
+
     getSales: builder.query({
-      query: ({ page = 1 } = {}) => `?page=${page}&limit=20`,
-      providesTags: ["Sale"],
+      query: () => "/",
+      providesTags: ["Sales"],
+    }),
+
+    getSaleById: builder.query({
+      query: (id) => `/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "Sale", id }],
     }),
   }),
 });
 
-export const { useCreateSaleMutation, useGetSalesQuery } = saleApi;
+export const {
+  useCreateSaleMutation,
+  useGetSalesQuery,
+  useGetSaleByIdQuery,
+} = saleApi;
