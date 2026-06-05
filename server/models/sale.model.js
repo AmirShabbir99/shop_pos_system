@@ -32,12 +32,11 @@ const saleSchema = new mongoose.Schema(
 );
 
 // Auto generate sale number
-saleSchema.pre("save", async function (next) {
+saleSchema.pre("save", async function () {
   if (!this.saleNumber) {
     const count = await mongoose.model("Sale").countDocuments();
     this.saleNumber = `SALE-${String(count + 1).padStart(5, "0")}`;
   }
-  next();
 });
 
 export default mongoose.model("Sale", saleSchema);

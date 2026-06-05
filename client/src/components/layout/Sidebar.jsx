@@ -10,6 +10,7 @@ import {
   Building2, LogOut,
   Truck,
 } from "lucide-react";
+import { useLowStock } from "../../hooks/useLowStock";
 
 const NAV = {
   admin: [
@@ -96,7 +97,7 @@ const Sidebar = ({ role = "admin" }) => {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
   const [logout] = useLogoutMutation();
-
+  const { lowStockCount } = useLowStock();
   const handleLogout = async () => {
     await logout();
     dispatch(clearCredentials());
@@ -180,6 +181,8 @@ const Sidebar = ({ role = "admin" }) => {
               </NavLink>
             ))}
             {collapsed && <div className="border-b border-white/[0.05] my-2 mx-1" />}
+
+          
           </div>
         ))}
       </nav>
@@ -196,6 +199,11 @@ const Sidebar = ({ role = "admin" }) => {
               <p className="text-[11px] text-white/40 capitalize">{user?.role}</p>
             </div>
           )}
+          {/* {!collapsed && item.to.includes("stock-alerts") && lowStockCount > 0 && (
+            <span className="ml-auto text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-red-500 text-white animate-pulse">
+              {lowStockCount}
+            </span>
+          )} */}
           <button
             onClick={handleLogout}
             title="Logout"

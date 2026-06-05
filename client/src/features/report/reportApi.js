@@ -9,14 +9,16 @@ export const reportApi = createApi({
   endpoints: (builder) => ({
     getSalesReport: builder.query({
       query: ({ startDate, endDate, groupBy = "day" } = {}) =>
-        `?startDate=${startDate}&endDate=${endDate}&groupBy=${groupBy}`,
+        `/sales?startDate=${startDate}&endDate=${endDate}&groupBy=${groupBy}`,
     }),
+
     getInventoryReport: builder.query({
       query: () => "/inventory",
     }),
+
     getProfitReport: builder.query({
       query: ({ startDate, endDate } = {}) =>
-        `?startDate=${startDate}&endDate=${endDate}`,
+        `/profit?startDate=${startDate}&endDate=${endDate}`,
     }),
   }),
 });

@@ -18,14 +18,7 @@ import UsersPage from "./pages/admin/UsersPage";
 import SettingsPage from "./pages/shared/SettingsPage";
 import CustomersPage from "./pages/shared/CustomersPage";
 import SuppliersPage from "./pages/shared/SuppliersPage";
-
-// Admin
-
-
-// Manager
-
-
-// Cashier
+import StockAlertsPage from "./pages/shared/StockAlertsPage";
 
 
 
@@ -61,6 +54,7 @@ const App = () => (
 
         <Route path="/admin/customers" element={<CustomersPage />} />
         <Route path="/admin/suppliers" element={<SuppliersPage />} />
+        <Route path="/admin/stock-alerts"   element={<StockAlertsPage />} />
       </Route>
 
       <Route
@@ -81,6 +75,7 @@ const App = () => (
         <Route path="/manager/settings" element={<SettingsPage />} />
         <Route path="/manager/customers" element={<CustomersPage />} />
         <Route path="/manager/suppliers" element={<SuppliersPage />} />
+        <Route path="/manager/stock-alerts" element={<StockAlertsPage />} />
       </Route>
 
       <Route
@@ -97,6 +92,7 @@ const App = () => (
         <Route path="/cashier/sales" element={<SalesHistoryPage />} />
         <Route path="/cashier/settings" element={<SettingsPage />} />
         <Route path="/cashier/customers" element={<CustomersPage />} />
+        <Route path="/cashier/stock-alerts" element={<StockAlertsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
