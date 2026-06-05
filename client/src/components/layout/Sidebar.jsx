@@ -8,6 +8,7 @@ import {
   AlertTriangle, Receipt, BarChart2, Wallet,
   Users, Settings, ChevronLeft, ChevronRight,
   Building2, LogOut,
+  Truck,
 } from "lucide-react";
 
 const NAV = {
@@ -15,31 +16,34 @@ const NAV = {
     {
       label: "Main",
       items: [
-        { to: "/admin",   icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/admin/pos",         icon: ShoppingCart,    label: "POS Screen" },
+        { to: "/admin", icon: LayoutDashboard, label: "Dashboard" },
+        { to: "/admin/pos", icon: ShoppingCart, label: "POS Screen" },
       ],
     },
     {
       label: "Inventory",
       items: [
-        { to: "/admin/products",    icon: Package,        label: "Products",    badge: null },
-        { to: "/admin/categories",  icon: Tag,            label: "Categories" },
-        { to: "/admin/stock-alerts",icon: AlertTriangle,  label: "Stock Alerts", badge: "!" },
+        { to: "/admin/products", icon: Package, label: "Products", badge: null },
+        { to: "/admin/categories", icon: Tag, label: "Categories" },
+        { to: "/admin/stock-alerts", icon: AlertTriangle, label: "Stock Alerts", badge: "!" },
       ],
     },
     {
       label: "Sales",
       items: [
-        { to: "/admin/sales",       icon: Receipt,        label: "Sales History" },
-        { to: "/admin/reports",     icon: BarChart2,      label: "Reports" },
-        { to: "/admin/expenses",    icon: Wallet,         label: "Expenses" },
+        { to: "/admin/sales", icon: Receipt, label: "Sales History" },
+        { to: "/admin/reports", icon: BarChart2, label: "Reports" },
+        { to: "/admin/expenses", icon: Wallet, label: "Expenses" },
+
+        { to: "/admin/customers", icon: Users, label: "Customers" },
+        { to: "/admin/suppliers", icon: Truck, label: "Suppliers" },
       ],
     },
     {
       label: "Admin",
       items: [
-        { to: "/admin/users",       icon: Users,          label: "Users" },
-        { to: "/admin/settings",    icon: Settings,       label: "Settings" },
+        { to: "/admin/users", icon: Users, label: "Users" },
+        { to: "/admin/settings", icon: Settings, label: "Settings" },
       ],
     },
   ],
@@ -48,22 +52,24 @@ const NAV = {
       label: "Main",
       items: [
         { to: "/manager", icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/manager/pos",       icon: ShoppingCart,    label: "POS Screen" },
+        { to: "/manager/pos", icon: ShoppingCart, label: "POS Screen" },
       ],
     },
     {
       label: "Inventory",
       items: [
-        { to: "/manager/products",  icon: Package,        label: "Products" },
-        { to: "/manager/categories",icon: Tag,            label: "Categories" },
-        { to: "/manager/stock-alerts",icon: AlertTriangle,label: "Stock Alerts" },
+        { to: "/manager/products", icon: Package, label: "Products" },
+        { to: "/manager/categories", icon: Tag, label: "Categories" },
+        { to: "/manager/stock-alerts", icon: AlertTriangle, label: "Stock Alerts" },
       ],
     },
     {
       label: "Sales",
       items: [
-        { to: "/manager/sales",     icon: Receipt,        label: "Sales History" },
-        { to: "/manager/reports",   icon: BarChart2,      label: "Reports" },
+        { to: "/manager/sales", icon: Receipt, label: "Sales History" },
+        { to: "/manager/reports", icon: BarChart2, label: "Reports" },
+        { to: "/admin/customers", icon: Users, label: "Customers" },
+        { to: "/admin/suppliers", icon: Truck, label: "Suppliers" },
       ],
     },
   ],
@@ -72,13 +78,13 @@ const NAV = {
       label: "Main",
       items: [
         { to: "/cashier", icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/cashier/pos",       icon: ShoppingCart,    label: "POS Screen" },
+        { to: "/cashier/pos", icon: ShoppingCart, label: "POS Screen" },
       ],
     },
     {
       label: "Sales",
       items: [
-        { to: "/cashier/sales",     icon: Receipt,        label: "My Sales" },
+        { to: "/cashier/sales", icon: Receipt, label: "My Sales" },
       ],
     },
   ],
@@ -86,10 +92,10 @@ const NAV = {
 
 const Sidebar = ({ role = "admin" }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const dispatch   = useDispatch();
-  const navigate   = useNavigate();
-  const { user }   = useSelector((s) => s.auth);
-  const [logout]   = useLogoutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((s) => s.auth);
+  const [logout] = useLogoutMutation();
 
   const handleLogout = async () => {
     await logout();
@@ -122,7 +128,7 @@ const Sidebar = ({ role = "admin" }) => {
         >
           {collapsed
             ? <ChevronRight size={13} />
-            : <ChevronLeft  size={13} />
+            : <ChevronLeft size={13} />
           }
         </button>
       </div>

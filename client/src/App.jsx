@@ -16,6 +16,16 @@ import SalesHistoryPage from "./pages/shared/SalesHistoryPage";
 import ExpensesPage from "./pages/shared/ExpensesPage";
 import UsersPage from "./pages/admin/UsersPage";
 import SettingsPage from "./pages/shared/SettingsPage";
+import CustomersPage from "./pages/shared/CustomersPage";
+import SuppliersPage from "./pages/shared/SuppliersPage";
+
+// Admin
+
+
+// Manager
+
+
+// Cashier
 
 
 
@@ -48,6 +58,9 @@ const App = () => (
 
         <Route path="/admin/users" element={<UsersPage />} />
         <Route path="/admin/settings" element={<SettingsPage />} />
+
+        <Route path="/admin/customers" element={<CustomersPage />} />
+        <Route path="/admin/suppliers" element={<SuppliersPage />} />
       </Route>
 
       <Route
@@ -66,6 +79,8 @@ const App = () => (
         <Route path="/manager/sales" element={<SalesHistoryPage />} />
         <Route path="/manager/expenses" element={<ExpensesPage />} />
         <Route path="/manager/settings" element={<SettingsPage />} />
+        <Route path="/manager/customers" element={<CustomersPage />} />
+        <Route path="/manager/suppliers" element={<SuppliersPage />} />
       </Route>
 
       <Route
@@ -81,7 +96,7 @@ const App = () => (
 // Cashier
         <Route path="/cashier/sales" element={<SalesHistoryPage />} />
         <Route path="/cashier/settings" element={<SettingsPage />} />
-
+        <Route path="/cashier/customers" element={<CustomersPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>

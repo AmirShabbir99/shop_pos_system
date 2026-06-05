@@ -8,11 +8,8 @@ import { saleApi } from "../features/sale/saleApi";
 import { reportApi } from "../features/report/reportApi";
 import { expenseApi } from "../features/expense/expenseApi";
 import { userManageApi } from "../features/user/userManageApi";
-
-
-
-
-
+import { customerApi } from "../features/customer/customerApi";
+import { supplierApi } from "../features/supplier/supplierApi";
 
 
 export const store = configureStore({
@@ -26,6 +23,8 @@ export const store = configureStore({
     [reportApi.reducerPath]: reportApi.reducer,
     [expenseApi.reducerPath]: expenseApi.reducer,
     [userManageApi.reducerPath]: userManageApi.reducer,
+    [customerApi.reducerPath]: customerApi.reducer,
+    [supplierApi.reducerPath]: supplierApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware, dashboardApi.middleware)
@@ -34,5 +33,7 @@ export const store = configureStore({
       .concat(saleApi.middleware)
       .concat(reportApi.middleware)
       .concat(expenseApi.middleware)
-      .concat(userManageApi.middleware),
+      .concat(userManageApi.middleware)
+      .concat(customerApi.middleware)
+      .concat(supplierApi.middleware),
 });
