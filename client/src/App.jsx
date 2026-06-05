@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import AuthBootstrap from "./components/AuthBootstrap";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { getTheme, applyTheme } from "./utils/theme";
 
 import Login from "./pages/Login";
 import CategoryPage from "./pages/admin/CategoryPage";
@@ -23,8 +25,13 @@ import StockAlertsPage from "./pages/shared/StockAlertsPage";
 
 
 
-const App = () => (
-  <AuthBootstrap>
+const App = () => {
+  useEffect(() => {
+    applyTheme(getTheme());
+  }, []);
+
+  return (
+    <AuthBootstrap>
     <Routes>
       <Route path="/login" element={<Login />} />
 
@@ -97,6 +104,7 @@ const App = () => (
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   </AuthBootstrap>
-);
+  );
+};
 
 export default App;

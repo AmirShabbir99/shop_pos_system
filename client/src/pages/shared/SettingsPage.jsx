@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCredentials } from "../../features/auth/authSlice";
+import { getTheme, applyTheme } from "../../utils/theme";
 import {
   useUpdateProfileMutation,
   useChangePasswordMutation,
@@ -186,10 +187,18 @@ const PasswordTab = () => {
 
 // ─── Appearance Tab ───────────────────────────────────────
 const AppearanceTab = () => {
-  const [theme,    setTheme]    = useState("light");
+  const [theme,    setTheme]    = useState(() => getTheme());
   const [accent,   setAccent]   = useState("indigo");
   const [compact,  setCompact]  = useState(false);
   const [saved,    setSaved]    = useState(false);
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      setTheme(getTheme());
+    };
+    window.addEventListener("theme-change", handleThemeChange);
+    return () => window.removeEventListener("theme-change", handleThemeChange);
+  }, []);
 
   const THEMES  = [
     { id: "light",  label: "Light",  icon: Sun     },
@@ -206,6 +215,7 @@ const AppearanceTab = () => {
   ];
 
   const handleSave = () => {
+    applyTheme(theme);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -217,7 +227,7 @@ const AppearanceTab = () => {
         <h3 className="text-sm font-medium text-gray-700 mb-3">Theme</h3>
         <div className="grid grid-cols-3 gap-3">
           {THEMES.map(({ id, label, icon: Icon }) => (
-            <button key={id} onClick={() => setTheme(id)}
+            <button key={id} onClick={() => { setTheme(id); applyTheme(id); }}
               className={`flex flex-col items-center gap-2 p-4 rounded-xl border transition text-sm font-medium
                 ${theme === id
                   ? "border-indigo-400 bg-indigo-50 text-indigo-700"

@@ -1,5 +1,48 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-white: var(--theme-white);
+  --color-gray-50: var(--theme-gray-50);
+  --color-gray-100: var(--theme-gray-100);
+  --color-gray-200: var(--theme-gray-200);
+  --color-gray-300: var(--theme-gray-300);
+  --color-gray-400: var(--theme-gray-400);
+  --color-gray-500: var(--theme-gray-500);
+  --color-gray-600: var(--theme-gray-600);
+  --color-gray-700: var(--theme-gray-700);
+  --color-gray-800: var(--theme-gray-800);
+  --color-gray-900: var(--theme-gray-900);
+}
+
+:root {
+  --theme-white: #ffffff;
+  --theme-gray-50: #f9fafb;
+  --theme-gray-100: #f3f4f6;
+  --theme-gray-200: #e5e7eb;
+  --theme-gray-300: #d1d5db;
+  --theme-gray-400: #9ca3af;
+  --theme-gray-500: #6b7280;
+  --theme-gray-600: #4b5563;
+  --theme-gray-700: #374151;
+  --theme-gray-800: #1f2937;
+  --theme-gray-900: #111827;
+}
+
+.dark {
+  --theme-white: #151521;
+  --theme-gray-50: #0b0b14;
+  --theme-gray-100: #222235;
+  --theme-gray-200: #2f2f48;
+  --theme-gray-300: #444462;
+  --theme-gray-400: #707090;
+  --theme-gray-500: #9494b8;
+  --theme-gray-600: #a9a9c6;
+  --theme-gray-700: #c5c5d9;
+  --theme-gray-800: #e1e1ec;
+  --theme-gray-900: #ffffff;
+}
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
-.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }

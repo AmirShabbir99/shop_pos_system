@@ -108,24 +108,24 @@ const Sidebar = ({ role = "admin" }) => {
 
   return (
     <aside
-      className={`flex flex-col h-screen bg-[#1E1E2D] transition-all duration-300 ease-in-out flex-shrink-0
+      className={`flex flex-col h-screen bg-white dark:bg-black border-r border-gray-100 dark:border-gray-800 transition-all duration-300 ease-in-out flex-shrink-0
         ${collapsed ? "w-14" : "w-56"}`}
     >
       {/* Logo + Toggle */}
-      <div className="flex items-center justify-between px-3 py-3.5 border-b border-white/[0.07] min-h-[52px]">
+      <div className="flex items-center justify-between px-3 py-3.5 border-b border-gray-100 dark:border-gray-800 min-h-[52px]">
         <div className="flex items-center gap-2.5 overflow-hidden">
           <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0">
             <Building2 size={14} className="text-white" />
           </div>
           {!collapsed && (
-            <span className="text-sm font-medium text-white whitespace-nowrap">
+            <span className="text-sm font-medium text-gray-800 !dark:text-white whitespace-nowrap">
               POS System
             </span>
           )}
         </div>
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="w-6 h-6 rounded-md bg-white/[0.07] hover:bg-white/[0.12] flex items-center justify-center text-white/50 hover:text-white/80 transition flex-shrink-0"
+          className="w-6 h-6 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition flex-shrink-0"
         >
           {collapsed
             ? <ChevronRight size={13} />
@@ -139,7 +139,7 @@ const Sidebar = ({ role = "admin" }) => {
         {sections.map((section) => (
           <div key={section.label} className="px-2 mb-1">
             {!collapsed && (
-              <p className="text-[10px] font-medium text-white/30 uppercase tracking-widest px-2 py-2">
+              <p className="text-[10px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest px-2 py-2">
                 {section.label}
               </p>
             )}
@@ -152,7 +152,7 @@ const Sidebar = ({ role = "admin" }) => {
                   `group relative flex items-center gap-2.5 px-2 py-2.5 rounded-lg mb-0.5 transition-all
                   ${isActive
                     ? "bg-indigo-500 text-white"
-                    : "text-white/50 hover:bg-white/[0.07] hover:text-white/80"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white"
                   }`
                 }
               >
@@ -164,15 +164,15 @@ const Sidebar = ({ role = "admin" }) => {
                     )}
                     {!collapsed && badge && (
                       <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full
-                        ${isActive ? "bg-white/25 text-white" : "bg-white/10 text-white/70"}`}>
+                        ${isActive ? "bg-white/25 text-white" : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"}`}>
                         {badge}
                       </span>
                     )}
                     {/* Tooltip when collapsed */}
                     {collapsed && (
-                      <span className="absolute left-full ml-2 px-2.5 py-1.5 bg-[#1E1E2D] text-white text-xs rounded-lg
+                      <span className="absolute left-full ml-2 px-2.5 py-1.5 bg-white dark:bg-black text-gray-800 dark:text-white text-xs rounded-lg
                         whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none
-                        border border-white/10 z-50">
+                        border border-gray-200 dark:border-gray-800 z-50">
                         {label}
                       </span>
                     )}
@@ -180,23 +180,22 @@ const Sidebar = ({ role = "admin" }) => {
                 )}
               </NavLink>
             ))}
-            {collapsed && <div className="border-b border-white/[0.05] my-2 mx-1" />}
+            {collapsed && <div className="border-b border-gray-100 dark:border-gray-800 my-2 mx-1" />}
 
-          
           </div>
         ))}
       </nav>
 
       {/* User + Logout */}
-      <div className="p-2 border-t border-white/[0.07]">
+      <div className="p-2 border-t border-gray-100 dark:border-gray-800">
         <div className="flex items-center gap-2.5 px-2 py-2 rounded-lg overflow-hidden">
           <div className="w-7 h-7 rounded-lg bg-indigo-500 flex items-center justify-center text-white text-xs font-medium flex-shrink-0">
             {user?.name?.charAt(0)?.toUpperCase() || "U"}
           </div>
           {!collapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white/85 truncate">{user?.name}</p>
-              <p className="text-[11px] text-white/40 capitalize">{user?.role}</p>
+              <p className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate">{user?.name}</p>
+              <p className="text-[11px] text-gray-400 dark:text-gray-500 capitalize">{user?.role}</p>
             </div>
           )}
           {/* {!collapsed && item.to.includes("stock-alerts") && lowStockCount > 0 && (
@@ -207,7 +206,7 @@ const Sidebar = ({ role = "admin" }) => {
           <button
             onClick={handleLogout}
             title="Logout"
-            className="w-6 h-6 rounded-md hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-red-400 transition flex-shrink-0"
+            className="w-6 h-6 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition flex-shrink-0"
           >
             <LogOut size={13} />
           </button>
