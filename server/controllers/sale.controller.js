@@ -75,3 +75,34 @@ export const getSale = async (req, res, next) => {
     next(error);
   }
 };
+
+// Sales summary for history page
+export const getSalesSummary = async (req, res, next) => {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const [todayStats, allTime] = await Promise.all([
+      Sale.aggregate([
+        { $match: { createdAt: { $gte: today, $lt: tomorrow }, status: "completed" } },
+        { $group: { _id: null, total: { $sum: "$grandTotal" }, count: { $sum: 1 } } },
+      ]),
+      Sale.aggregate([
+        { $match: { status: "completed" } },
+        { $group: { _id: null, total: { $sum: "$grandTotal" }, count: { $sum: 1 } } },
+      ]),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      todayRevenue: todayStats[0]?.total || 0,
+      todayOrders:  todayStats[0]?.count || 0,
+      allRevenue:   allTime[0]?.total    || 0,
+      allOrders:    allTime[0]?.count    || 0,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -9,6 +9,7 @@ import categoryRoutes from "./routes/category.route.js";
 import productRoutes from "./routes/product.route.js";
 import saleRoutes from "./routes/sale.route.js";
 import reportRoutes from "./routes/report.route.js";
+import expenseRoutes from "./routes/expense.route.js";
 
 dotenv.config();
 connectDB();
@@ -35,6 +36,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/sales", saleRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/expenses", expenseRoutes);
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });

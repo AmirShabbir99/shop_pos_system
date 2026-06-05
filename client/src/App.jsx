@@ -12,6 +12,12 @@ import CashierDashboard from "./pages/cashier/CashierDashboard";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import InvoiceSection from "./components/InvoiceSection";
 import ReportsPage from "./pages/admin/ReportsPage";
+import SalesHistoryPage from "./pages/shared/SalesHistoryPage";
+import ExpensesPage from "./pages/shared/ExpensesPage";
+import UsersPage from "./pages/admin/UsersPage";
+import SettingsPage from "./pages/shared/SettingsPage";
+
+
 
 
 const App = () => (
@@ -35,6 +41,13 @@ const App = () => (
         <Route path="/admin/reports" element={<ReportsPage />} />
 
         <Route path="/manager/reports" element={<ReportsPage />} />
+
+        // Admin
+        <Route path="/admin/sales" element={<SalesHistoryPage />} />
+        <Route path="/admin/expenses" element={<ExpensesPage />} />
+
+        <Route path="/admin/users" element={<UsersPage />} />
+        <Route path="/admin/settings" element={<SettingsPage />} />
       </Route>
 
       <Route
@@ -48,6 +61,11 @@ const App = () => (
         <Route path="/manager/products" element={<ProductPage />} />
         <Route path="/manager/categories" element={<CategoryPage />} />
         <Route path="/manager/pos" element={<CashierPOS />} />
+
+// Manager
+        <Route path="/manager/sales" element={<SalesHistoryPage />} />
+        <Route path="/manager/expenses" element={<ExpensesPage />} />
+        <Route path="/manager/settings" element={<SettingsPage />} />
       </Route>
 
       <Route
@@ -59,6 +77,11 @@ const App = () => (
       >
         <Route path="/cashier" element={<CashierDashboard />} />
         <Route path="/cashier/pos" element={<CashierPOS />} />
+
+// Cashier
+        <Route path="/cashier/sales" element={<SalesHistoryPage />} />
+        <Route path="/cashier/settings" element={<SettingsPage />} />
+
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>

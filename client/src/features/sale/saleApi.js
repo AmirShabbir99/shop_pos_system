@@ -26,6 +26,17 @@ export const saleApi = createApi({
       query: (id) => `/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Sale", id }],
     }),
+
+    getSalesSummary: builder.query({
+  query: () => "/summary",
+}),
+
+// getSales mein filters add karo:
+getSales: builder.query({
+  query: ({ page = 1, search = "", startDate = "", endDate = "", paymentMethod = "" } = {}) =>
+    `?page=${page}&limit=15&search=${search}&startDate=${startDate}&endDate=${endDate}&paymentMethod=${paymentMethod}`,
+  providesTags: ["Sale"],
+}),
   }),
 });
 
