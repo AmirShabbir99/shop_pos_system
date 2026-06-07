@@ -44,5 +44,20 @@
   --theme-gray-900: #ffffff;
 }
 
-.scrollbar-none::-webkit-scrollbar { display: none; }
-.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+@font-face {
+  font-family: "JameelNooriNastaleeq";
+  src: url("/fonts/JameelNooriNastaleeq.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

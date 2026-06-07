@@ -3,23 +3,25 @@ import { useLocation } from "react-router-dom";
 import { Bell, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getTheme, applyTheme } from "../../utils/theme";
+import { useTranslation } from "react-i18next";
 
 const PAGE_TITLES = {
-  dashboard:    "Dashboard",
-  pos:          "POS Screen",
-  products:     "Products",
-  categories:   "Categories",
-  sales:        "Sales History",
-  reports:      "Reports",
-  expenses:     "Expenses",
-  users:        "Users",
-  settings:     "Settings",
-  "stock-alerts": "Stock Alerts",
+  dashboard:    "dashboard",
+  pos:          "pos_screen",
+  products:     "products",
+  categories:   "categories",
+  sales:        "sales_history",
+  reports:      "reports",
+  expenses:     "expenses",
+  users:        "users",
+  settings:     "settings",
+  "stock-alerts": "stock_alerts",
 };
 
 const Topbar = () => {
   const { user }   = useSelector((s) => s.auth);
   const { pathname } = useLocation();
+  const { t, i18n } = useTranslation();
   const [dark, setDark] = useState(() => {
     const theme = getTheme();
     return theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -51,8 +53,15 @@ const Topbar = () => {
     applyTheme(nextTheme);
   };
 
+  const changeLanguage = (e) => {
+    const lng = e.target.value;
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lng", lng);
+  };
+
   const segment = pathname.split("/").pop();
-  const title   = PAGE_TITLES[segment] || "Dashboard";
+  const titleKey   = PAGE_TITLES[segment] || "dashboard";
+  const title = t(titleKey);
 
   return (
     <header className="h-[52px] bg-white border-b border-gray-100 px-5 flex items-center justify-between flex-shrink-0">
@@ -61,6 +70,17 @@ const Topbar = () => {
       </div>
 
       <div className="flex items-center gap-2">
+        {/* Language Switcher */}
+        <select
+          value={i18n.language}
+          onChange={changeLanguage}
+          className="text-xs bg-white dark:bg-black text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-800 rounded-lg px-2 py-1 outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer h-8 transition"
+        >
+          <option value="en">English</option>
+          <option value="ur">اردو</option>
+          <option value="ru">Roman Urdu</option>
+        </select>
+
         {/* Dark mode toggle */}
         <button
           onClick={toggleTheme}

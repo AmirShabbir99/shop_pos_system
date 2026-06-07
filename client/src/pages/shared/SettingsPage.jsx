@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCredentials } from "../../features/auth/authSlice";
 import { getTheme, applyTheme } from "../../utils/theme";
+import { useTranslation } from "react-i18next";
 import {
   useUpdateProfileMutation,
   useChangePasswordMutation,
@@ -13,10 +14,10 @@ import {
 } from "lucide-react";
 
 const TABS = [
-  { id: "profile",   label: "My Profile",    icon: User    },
-  { id: "password",  label: "Change Password", icon: Lock  },
-  { id: "appearance",label: "Appearance",    icon: Palette },
-  { id: "notifications", label: "Notifications", icon: Bell },
+  { id: "profile",   label: "My Profile", key: "my_profile",   icon: User    },
+  { id: "password",  label: "Change Password", key: "change_password", icon: Lock  },
+  { id: "appearance",label: "Appearance", key: "appearance",   icon: Palette },
+  { id: "notifications", label: "Notifications", key: "notifications", icon: Bell },
 ];
 
 // ─── Profile Tab ──────────────────────────────────────────
@@ -187,6 +188,7 @@ const PasswordTab = () => {
 
 // ─── Appearance Tab ───────────────────────────────────────
 const AppearanceTab = () => {
+  const { t } = useTranslation();
   const [theme,    setTheme]    = useState(() => getTheme());
   const [accent,   setAccent]   = useState("indigo");
   const [compact,  setCompact]  = useState(false);
@@ -201,9 +203,9 @@ const AppearanceTab = () => {
   }, []);
 
   const THEMES  = [
-    { id: "light",  label: "Light",  icon: Sun     },
-    { id: "dark",   label: "Dark",   icon: Moon    },
-    { id: "system", label: "System", icon: Monitor },
+    { id: "light",  label: "Light",  key: "light",  icon: Sun     },
+    { id: "dark",   label: "Dark",   key: "dark",   icon: Moon    },
+    { id: "system", label: "System", key: "system", icon: Monitor },
   ];
   const ACCENTS = [
     { id: "indigo", color: "bg-indigo-500" },
@@ -224,9 +226,9 @@ const AppearanceTab = () => {
     <div className="space-y-6 max-w-lg">
       {/* Theme */}
       <div>
-        <h3 className="text-sm font-medium text-gray-700 mb-3">Theme</h3>
+        <h3 className="text-sm font-medium text-gray-700 mb-3">{t("theme")}</h3>
         <div className="grid grid-cols-3 gap-3">
-          {THEMES.map(({ id, label, icon: Icon }) => (
+          {THEMES.map(({ id, key, icon: Icon }) => (
             <button key={id} onClick={() => { setTheme(id); applyTheme(id); }}
               className={`flex flex-col items-center gap-2 p-4 rounded-xl border transition text-sm font-medium
                 ${theme === id
@@ -234,7 +236,7 @@ const AppearanceTab = () => {
                   : "border-gray-200 hover:border-gray-300 text-gray-600"
                 }`}>
               <Icon size={20} />
-              {label}
+              {t(key)}
             </button>
           ))}
         </div>
@@ -242,7 +244,7 @@ const AppearanceTab = () => {
 
       {/* Accent Color */}
       <div>
-        <h3 className="text-sm font-medium text-gray-700 mb-3">Accent Color</h3>
+        <h3 className="text-sm font-medium text-gray-700 mb-3">{t("accent_color")}</h3>
         <div className="flex gap-3 flex-wrap">
           {ACCENTS.map(({ id, color }) => (
             <button key={id} onClick={() => setAccent(id)}
@@ -256,7 +258,7 @@ const AppearanceTab = () => {
       {/* Compact Mode */}
       <div className="flex items-center justify-between bg-gray-50 rounded-xl p-4">
         <div>
-          <p className="text-sm font-medium text-gray-700">Compact Mode</p>
+          <p className="text-sm font-medium text-gray-700">{t("compact_mode")}</p>
           <p className="text-xs text-gray-400 mt-0.5">Smaller padding aur font size</p>
         </div>
         <button onClick={() => setCompact(!compact)}
@@ -268,7 +270,7 @@ const AppearanceTab = () => {
 
       <button onClick={handleSave}
         className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition">
-        {saved ? <><CheckCircle size={15} /> Saved!</> : <><Save size={15} /> Save Preferences</>}
+        {saved ? <><CheckCircle size={15} /> {t("saved")}</> : <><Save size={15} /> {t("save_preferences")}</>}
       </button>
     </div>
   );
@@ -330,11 +332,12 @@ const NotificationsTab = () => {
 // ─── Main Settings Page ───────────────────────────────────
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const { t } = useTranslation();
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Settings</h1>
+        <h1 className="text-2xl font-bold text-gray-800">{t("settings")}</h1>
         <p className="text-sm text-gray-500 mt-0.5">Account aur app preferences manage karo</p>
       </div>
 
@@ -342,7 +345,7 @@ const SettingsPage = () => {
         {/* Sidebar Tabs */}
         <div className="w-52 flex-shrink-0">
           <nav className="space-y-1">
-            {TABS.map(({ id, label, icon: Icon }) => (
+            {TABS.map(({ id, key, icon: Icon }) => (
               <button key={id} onClick={() => setActiveTab(id)}
                 className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition text-left
                   ${activeTab === id
@@ -350,7 +353,7 @@ const SettingsPage = () => {
                     : "text-gray-600 hover:bg-gray-100"
                   }`}>
                 <Icon size={16} />
-                {label}
+                {t(key)}
               </button>
             ))}
           </nav>

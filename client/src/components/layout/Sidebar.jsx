@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../../features/auth/authApi";
 import { clearCredentials } from "../../features/auth/authSlice";
+import { useTranslation } from "react-i18next";
 import {
   LayoutDashboard, ShoppingCart, Package, Tag,
   AlertTriangle, Receipt, BarChart2, Wallet,
@@ -16,82 +17,91 @@ const NAV = {
   admin: [
     {
       label: "Main",
+      key: "main_nav",
       items: [
-        { to: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/admin/pos", icon: ShoppingCart, label: "POS Screen" },
+        { to: "/admin", icon: LayoutDashboard, label: "Dashboard", key: "dashboard" },
+        { to: "/admin/pos", icon: ShoppingCart, label: "POS Screen", key: "pos_screen" },
       ],
     },
     {
       label: "Inventory",
+      key: "inventory_nav",
       items: [
-        { to: "/admin/products", icon: Package, label: "Products", badge: null },
-        { to: "/admin/categories", icon: Tag, label: "Categories" },
-        { to: "/admin/stock-alerts", icon: AlertTriangle, label: "Stock Alerts", badge: "!" },
+        { to: "/admin/products", icon: Package, label: "Products", badge: null, key: "products" },
+        { to: "/admin/categories", icon: Tag, label: "Categories", key: "categories" },
+        { to: "/admin/stock-alerts", icon: AlertTriangle, label: "Stock Alerts", badge: "!", key: "stock_alerts" },
       ],
     },
     {
       label: "Sales",
+      key: "sales_nav",
       items: [
-        { to: "/admin/sales", icon: Receipt, label: "Sales History" },
-        { to: "/admin/reports", icon: BarChart2, label: "Reports" },
-        { to: "/admin/expenses", icon: Wallet, label: "Expenses" },
-
-        { to: "/admin/customers", icon: Users, label: "Customers" },
-        { to: "/admin/suppliers", icon: Truck, label: "Suppliers" },
+        { to: "/admin/sales", icon: Receipt, label: "Sales History", key: "sales_history" },
+        { to: "/admin/reports", icon: BarChart2, label: "Reports", key: "reports" },
+        { to: "/admin/expenses", icon: Wallet, label: "Expenses", key: "expenses" },
+        { to: "/admin/customers", icon: Users, label: "Customers", key: "customers" },
+        { to: "/admin/suppliers", icon: Truck, label: "Suppliers", key: "suppliers" },
       ],
     },
     {
       label: "Admin",
+      key: "admin_nav",
       items: [
-        { to: "/admin/users", icon: Users, label: "Users" },
-        { to: "/admin/settings", icon: Settings, label: "Settings" },
+        { to: "/admin/users", icon: Users, label: "Users", key: "users" },
+        { to: "/admin/settings", icon: Settings, label: "Settings", key: "settings" },
       ],
     },
   ],
   manager: [
     {
       label: "Main",
+      key: "main_nav",
       items: [
-        { to: "/manager", icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/manager/pos", icon: ShoppingCart, label: "POS Screen" },
+        { to: "/manager", icon: LayoutDashboard, label: "Dashboard", key: "dashboard" },
+        { to: "/manager/pos", icon: ShoppingCart, label: "POS Screen", key: "pos_screen" },
       ],
     },
     {
       label: "Inventory",
+      key: "inventory_nav",
       items: [
-        { to: "/manager/products", icon: Package, label: "Products" },
-        { to: "/manager/categories", icon: Tag, label: "Categories" },
-        { to: "/manager/stock-alerts", icon: AlertTriangle, label: "Stock Alerts" },
+        { to: "/manager/products", icon: Package, label: "Products", key: "products" },
+        { to: "/manager/categories", icon: Tag, label: "Categories", key: "categories" },
+        { to: "/manager/stock-alerts", icon: AlertTriangle, label: "Stock Alerts", key: "stock_alerts" },
       ],
     },
     {
       label: "Sales",
+      key: "sales_nav",
       items: [
-        { to: "/manager/sales", icon: Receipt, label: "Sales History" },
-        { to: "/manager/reports", icon: BarChart2, label: "Reports" },
-        { to: "/admin/customers", icon: Users, label: "Customers" },
-        { to: "/admin/suppliers", icon: Truck, label: "Suppliers" },
+        { to: "/manager/sales", icon: Receipt, label: "Sales History", key: "sales_history" },
+        { to: "/manager/reports", icon: BarChart2, label: "Reports", key: "reports" },
+        { to: "/admin/customers", icon: Users, label: "Customers", key: "customers" },
+        { to: "/admin/suppliers", icon: Truck, label: "Suppliers", key: "suppliers" },
       ],
     },
   ],
   cashier: [
     {
       label: "Main",
+      key: "main_nav",
       items: [
-        { to: "/cashier", icon: LayoutDashboard, label: "Dashboard" },
-        { to: "/cashier/pos", icon: ShoppingCart, label: "POS Screen" },
+        { to: "/cashier", icon: LayoutDashboard, label: "Dashboard", key: "dashboard" },
+        { to: "/cashier/pos", icon: ShoppingCart, label: "POS Screen", key: "pos_screen" },
       ],
     },
     {
       label: "Sales",
+      key: "sales_nav",
       items: [
-        { to: "/cashier/sales", icon: Receipt, label: "My Sales" },
+        { to: "/cashier/sales", icon: Receipt, label: "My Sales", key: "sales_history" },
       ],
     },
   ],
 };
 
 const Sidebar = ({ role = "admin" }) => {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -118,8 +128,8 @@ const Sidebar = ({ role = "admin" }) => {
             <Building2 size={14} className="text-white" />
           </div>
           {!collapsed && (
-            <span className="text-sm font-medium text-gray-800 !dark:text-white whitespace-nowrap">
-              POS System
+            <span className="text-sm font-medium text-gray-800 dark:text-white whitespace-nowrap">
+              {t("pos_system")}
             </span>
           )}
         </div>
@@ -140,14 +150,14 @@ const Sidebar = ({ role = "admin" }) => {
           <div key={section.label} className="px-2 mb-1">
             {!collapsed && (
               <p className="text-[10px] font-medium text-gray-400 dark:text-gray-500 uppercase tracking-widest px-2 py-2">
-                {section.label}
+                {t(section.key)}
               </p>
             )}
-            {section.items.map(({ to, icon: Icon, label, badge }) => (
+            {section.items.map(({ to, icon: Icon, label, badge, key }) => (
               <NavLink
                 key={to}
                 to={to}
-                title={collapsed ? label : undefined}
+                title={collapsed ? t(key) : undefined}
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 px-2 py-2.5 rounded-lg mb-0.5 transition-all
                   ${isActive
@@ -160,7 +170,7 @@ const Sidebar = ({ role = "admin" }) => {
                   <>
                     <Icon size={17} className="flex-shrink-0" />
                     {!collapsed && (
-                      <span className="text-[13px] flex-1 whitespace-nowrap">{label}</span>
+                      <span className="text-[13px] flex-1 whitespace-nowrap">{t(key)}</span>
                     )}
                     {!collapsed && badge && (
                       <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full
@@ -173,7 +183,7 @@ const Sidebar = ({ role = "admin" }) => {
                       <span className="absolute left-full ml-2 px-2.5 py-1.5 bg-white dark:bg-black text-gray-800 dark:text-white text-xs rounded-lg
                         whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none
                         border border-gray-200 dark:border-gray-800 z-50">
-                        {label}
+                        {t(key)}
                       </span>
                     )}
                   </>
@@ -198,14 +208,9 @@ const Sidebar = ({ role = "admin" }) => {
               <p className="text-[11px] text-gray-400 dark:text-gray-500 capitalize">{user?.role}</p>
             </div>
           )}
-          {/* {!collapsed && item.to.includes("stock-alerts") && lowStockCount > 0 && (
-            <span className="ml-auto text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-red-500 text-white animate-pulse">
-              {lowStockCount}
-            </span>
-          )} */}
           <button
             onClick={handleLogout}
-            title="Logout"
+            title={t("logout")}
             className="w-6 h-6 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 flex items-center justify-center text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition flex-shrink-0"
           >
             <LogOut size={13} />
