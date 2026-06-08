@@ -53,6 +53,22 @@
   font-style: normal;
 }
 
+/* ── Urdu / Nastaliq RTL ─────────────────────────────────── */
+html.lang-ur,
+html.lang-ur *,
+html.lang-ur input,
+html.lang-ur button,
+html.lang-ur select,
+html.lang-ur textarea {
+  font-family: "JameelNooriNastaleeq", sans-serif !important;
+  line-height: 2 !important; /* Nastaliq glyphs need extra line-height */
+}
+
+/* Make sure flex rows reverse for RTL layout */
+html[dir="rtl"] .sidebar-collapse-btn {
+  transform: scaleX(-1);
+}
+
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }

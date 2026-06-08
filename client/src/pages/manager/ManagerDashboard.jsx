@@ -72,7 +72,7 @@ const ManagerDashboard = () => {
           </div>
         </div>
       </div>
-
+   
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
         <h2 className="font-semibold text-gray-800 mb-4">Recent Sales</h2>
         <div className="overflow-x-auto">

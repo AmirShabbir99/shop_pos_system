@@ -101,7 +101,8 @@ const NAV = {
 };
 
 const Sidebar = ({ role = "admin" }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ur";
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -135,11 +136,11 @@ const Sidebar = ({ role = "admin" }) => {
         </div>
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="w-6 h-6 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition flex-shrink-0"
+          className="sidebar-collapse-btn w-6 h-6 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition flex-shrink-0"
         >
           {collapsed
-            ? <ChevronRight size={13} />
-            : <ChevronLeft size={13} />
+            ? (isRTL ? <ChevronLeft size={13} /> : <ChevronRight size={13} />)
+            : (isRTL ? <ChevronRight size={13} /> : <ChevronLeft size={13} />)
           }
         </button>
       </div>
