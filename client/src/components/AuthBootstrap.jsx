@@ -6,6 +6,7 @@ import {
 } from "../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 
+// AuthBootstrap
 const AuthBootstrap = ({ children }) => {
   const dispatch = useDispatch();
 
