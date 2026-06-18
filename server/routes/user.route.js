@@ -14,7 +14,7 @@ router.get("/me",       protect, getMe);
 router.put("/profile",  protect, updateProfile);
 router.put("/change-password", protect, changePassword);
 
-// Admin only
+// Admin only access
 router.post("/register",              protect, authorizeRoles("admin"), registerUser);
 router.get("/",                       protect, authorizeRoles("admin"), getUsers);
 router.put("/:id",                    protect, authorizeRoles("admin"), updateUser);
