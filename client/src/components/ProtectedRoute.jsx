@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+// ProtectedRoute
 const ProtectedRoute = ({ allowedRoles, children }) => {
   const { user, isAuthenticated, authChecked } = useSelector(
     (state) => state.auth
