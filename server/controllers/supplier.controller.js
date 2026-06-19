@@ -1,5 +1,5 @@
 import Supplier from "../models/supplier.model.js";
-// supplier
+// supplier controller
 export const getSuppliers = async (req, res, next) => {
   try {
     const { search = "", page = 1, limit = 12, status } = req.query;
