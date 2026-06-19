@@ -7,7 +7,7 @@ import {
 import { protect, authorizeRoles } from "../middleware/auth.js";
 
 const router = express.Router();
-
+//report route
 router.use(protect, authorizeRoles("admin", "manager"));
 router.get("/sales",     getSalesReport);
 router.get("/inventory", getInventoryReport);
