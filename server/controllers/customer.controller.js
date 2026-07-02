@@ -106,9 +106,9 @@ export const addCustomerTransaction = async (req, res, next) => {
 
     // balance update
     if (type === "sale" || type === "credit") {
-      customer.balance += Number(amount); // customer pe udhaar barha
+      customer.balance += Number(amount);
     } else if (type === "payment") {
-      customer.balance -= Number(amount); // customer ne pay kiya
+      customer.balance -= Number(amount);
     }
 
     customer.transactions.push({ type, amount, description, date: new Date() });
