@@ -5,6 +5,8 @@ import {
 } from "../controllers/expense.controller.js";
 import { protect, authorizeRoles } from "../middleware/auth.js";
 
+//expense route
+
 const router = express.Router();
 router.use(protect, authorizeRoles("admin", "manager"));
 router.get("/",     getExpenses);
