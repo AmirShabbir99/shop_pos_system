@@ -7,7 +7,7 @@ const transactionSchema = new mongoose.Schema({
   saleRef:     { type: mongoose.Schema.Types.ObjectId, ref: "Sale" },
   date:        { type: Date, default: Date.now },
 });
-
+//model
 const customerSchema = new mongoose.Schema(
   {
     name:    { type: String, required: true, trim: true },
