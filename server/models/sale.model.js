@@ -10,9 +10,15 @@ const saleItemSchema = new mongoose.Schema({
   barcode: {
      type: String 
     },
-  salePrice: { type: Number, required: true },
-  quantity: { type: Number, required: true },
-  total: { type: Number, required: true },
+  salePrice: {
+     type: Number, required: true 
+    },
+  quantity: { 
+    type: Number, required: true 
+  },
+  total: {
+     type: Number, required: true 
+    },
 });
 
 const saleSchema = new mongoose.Schema(
