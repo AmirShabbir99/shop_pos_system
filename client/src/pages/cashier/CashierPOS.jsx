@@ -250,7 +250,7 @@ const CashierPOS = () => {
     },
   });
 
-  // ── Checkout ───────────────────────────────────────────
+  // ── Checkout slip ───────────────────────────────────────────
   const handleCheckout = async () => {
     if (!cart.length) return;
     // if (payMethod === "cash" && (!cashReceived || Number(cashReceived) < grandTotal)) {
