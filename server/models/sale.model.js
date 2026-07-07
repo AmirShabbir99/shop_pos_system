@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
 const saleItemSchema = new mongoose.Schema({
-  product: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
-  name: { type: String, required: true },
-  barcode: { type: String },
+  product: { 
+    type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true 
+  },
+  name: { 
+    type: String, required: true 
+  },
+  barcode: {
+     type: String 
+    },
   salePrice: { type: Number, required: true },
   quantity: { type: Number, required: true },
   total: { type: Number, required: true },
