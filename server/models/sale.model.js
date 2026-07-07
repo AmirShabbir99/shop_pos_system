@@ -11,9 +11,13 @@ const saleItemSchema = new mongoose.Schema({
 
 const saleSchema = new mongoose.Schema(
   {
-    saleNumber: { type: String, unique: true },
+    saleNumber: { 
+      type: String, unique: true 
+    },
     items: [saleItemSchema],
-    subtotal: { type: Number, required: true },
+    subtotal: { 
+      type: Number, required: true 
+    },
     discount: { type: Number, default: 0 },
     discountType: { type: String, enum: ["flat", "percent"], default: "flat" },
     tax: { type: Number, default: 0 },
