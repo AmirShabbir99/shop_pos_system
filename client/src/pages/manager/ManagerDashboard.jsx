@@ -3,8 +3,6 @@ import StatCard from "../../components/dashboard/StatCard";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { TrendingUp, ShoppingBag, AlertTriangle, Loader2, Clock } from "lucide-react";
 
-// ManagerDashboard
-
 const ManagerDashboard = () => {
   const { data, isLoading } = useGetManagerStatsQuery();
 
