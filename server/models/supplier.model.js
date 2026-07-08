@@ -14,7 +14,7 @@ const supplierSchema = new mongoose.Schema(
     email:       { type: String, trim: true, default: "" },
     address:     { type: String, trim: true, default: "" },
     company:     { type: String, trim: true, default: "" },
-    balance:     { type: Number, default: 0 }, // positive = hum unhe dene hain
+    balance:     { type: Number, default: 0 }, 
     transactions: [payableSchema],
     status:      { type: String, enum: ["active", "inactive"], default: "active" },
     createdBy:   { type: mongoose.Schema.Types.ObjectId, ref: "User" },
