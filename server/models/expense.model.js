@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+//expenseSchema
 const expenseSchema = new mongoose.Schema(
   {
     title: {
